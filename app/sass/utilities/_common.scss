@@ -1,0 +1,32 @@
+.text-left {
+    text-align: left;
+}
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: center;
+}
+
+.float-left {
+    float: left;
+}
+.float-right {
+    float: right;
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+
+    &.img-width {
+        width: 100%;
+    }
+}
+
+.ov-scroll {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+

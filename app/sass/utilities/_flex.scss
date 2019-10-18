@@ -1,0 +1,108 @@
+.fx {
+    display: flex;
+}
+
+.fx-row {
+    flex-direction: row;
+}
+
+.fx-row-reverse {
+    flex-direction: row-reverse;
+}
+
+.fx-col {
+    flex-direction: column;
+}
+
+.fx-col-reverse {
+    flex-direction: column-reverse;
+}
+
+.fx-wrap {
+    flex-wrap: wrap;
+}
+
+.fx-nowrap {
+    flex-wrap: nowrap;
+}
+
+.fx-wrap-reverse {
+    flex-wrap: wrap-reverse;
+}
+
+.fx-fill {
+    flex: 1 1 auto;
+}
+
+.fx-aifs {
+    align-items: flex-start;
+}
+
+.fx-aife {
+    align-items: flex-end;
+}
+
+.fx-aic {
+    align-items: center;
+}
+
+.fx-aib {
+    align-items: baseline;
+}
+
+.fx-ais {
+    align-items: stretch;
+}
+
+.fx-jcfs {
+    justify-content: flex-start;
+}
+
+.fx-jcfe {
+    justify-content: flex-end;
+}
+
+.fx-jcc {
+    justify-content: center;
+}
+
+.fx-jcsb {
+    justify-content: space-between;
+}
+
+.fx-jcsa {
+    justify-content: space-around;
+}
+
+.fx-jcse {
+    justify-content: space-evenly;
+}
+
+.fx-aisa {
+    align-self: auto;
+}
+
+.fx-aisfs {
+    align-self: flex-start;
+}
+
+.fx-aisfe {
+    align-self: flex-end;
+}
+
+.fx-aisfc {
+    align-self: center;
+}
+
+.fx-aisb {
+    align-self: baseline;
+}
+
+.fx-aiss {
+    align-self: stretch;
+}
+
+.fx-center {
+    justify-content: center;
+    align-items: center;
+}

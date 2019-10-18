@@ -1,0 +1,51 @@
+// Path
+
+$img-dir-path: '../images/';
+
+
+// Fonts
+
+$font-family: ('Roboto', 'Arial', 'Helvetica', sans-serif);
+$line-height-base: 1.4;
+$line-height-sm: 1.2;
+
+$font-weight-light: 300;
+$font-weight-regular: normal;
+$font-weight-bold: bold;
+$font-weight-heavy: 800;
+
+$font-size-xsmall: 12px;
+$font-size-small: 14px;
+$font-size-base: 16px;
+$font-size-large: 18px;
+
+
+// Colors
+
+$color-accent: #6bbc2f;
+$color-white: #fff;
+$color-black: #000;
+$color-red: #da2c2c;
+
+
+// Links
+
+$link-color: $color-accent;
+
+
+// Animations
+
+$transition-time: .25s;
+$transition-effect: ease-out;
+
+
+// Layout
+
+$container-padding: 15px;
+
+
+// Section paddings
+
+$section-padding: 75px;
+$section-padding-md: 50px;
+$section-padding-sm: 40px;

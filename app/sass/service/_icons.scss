@@ -1,0 +1,17 @@
+/* icons */
+.icon {
+    display: inline-block;
+    vertical-align: middle;
+
+    &-svg {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        fill: currentColor;
+    }
+
+    // если иконку нужно вставить не через спрайт
+    //&-employee {
+    //    @include svg-icon('employee.svg', 20px, 20px);
+    //}
+}

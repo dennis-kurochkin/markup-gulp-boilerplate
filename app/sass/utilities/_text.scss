@@ -1,0 +1,17 @@
+.text-large {
+  font-size: rem($font-size-large);
+}
+.text-small {
+  font-size: rem($font-size-small);
+}
+.text-xsmall {
+  font-size: rem($font-size-xsmall);
+}
+
+
+.text-bold {
+  font-weight: $font-weight-bold;
+}
+.text-regular {
+  font-weight: $font-weight-regular;
+}

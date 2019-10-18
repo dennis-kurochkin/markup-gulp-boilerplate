@@ -1,0 +1,156 @@
+//convert font-size in rem
+@function rem($px) {
+    @return $px / $font-size-base+0rem;
+}
+
+@mixin list-reset {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@mixin absolute-centering {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin flex-centering {
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin margin-centering {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@mixin links-all {
+
+    &:link,
+    &:visited,
+    &:focus,
+    &:hover {
+        @content;
+    }
+}
+
+@mixin button-defaults() {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    vertical-align: middle;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.25s, color 0.25s, border 0.25s, box-shadow 0.25s;
+
+    &:focus,
+    &:active {
+        outline: 2px solid rgba(0, 74, 221, 0.5);
+        outline-offset: 4px;
+    }
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+@mixin box($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+
+// @include font("NameFont", "path");
+@mixin fonts($alias, $name, $weight:normal, $style:normal) {
+    @font-face {
+        font-family: $alias;
+        src: url("../fonts/"+ $name + ".woff2") format("woff2"),
+            url("../fonts/"+ $name + ".woff") format("woff"),
+            url("../fonts/"+ $name + ".ttf") format("truetype"),
+            url("../fonts/"+ $name + ".eot") format("embedded-opentype");
+        font-weight: $weight;
+        font-style: $style;
+    }
+}
+
+
+//.block { @include desktop { @content; } }
+@mixin desktop-wide {
+    @media (max-width: 1400px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (max-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media (max-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: 767px) {
+        @content;
+    }
+}
+
+@mixin tablet-small {
+    @media (max-width: 640px) {
+        @content;
+    }
+}
+
+@mixin phablet {
+    @media (max-width: 560px) {
+        @content;
+    }
+}
+
+@mixin phone-wide {
+    @media (max-width: 480px) {
+        @content;
+    }
+}
+
+@mixin phone {
+    @media (max-width: 400px) {
+        @content;
+    }
+}
+
+@mixin note-height {
+    @media (max-height: 800px) {
+        @content;
+    }
+}
+
+// transition
+@mixin transition($transition-property: all
+) {
+    transition: $transition-property $transition-time $transition-effect;
+}
+
+
+// Вставка иконок png из спрайта
+// @extend .icon-name;
+
+
+// svg
+@mixin svg-icon($icon-file-name, $icon-size-width, $icon-size-height) {
+    width: $icon-size-width;
+    height: $icon-size-height;
+    background-size: $icon-size-width $icon-size-height;
+    background-image: url("#{$img-dir-path}icons-svg/#{$icon-file-name}");
+}

@@ -1,0 +1,31 @@
+/* buttons */
+.btn {
+    position: relative;
+    display: inline-block;
+    padding: $btn-padding-v $btn-padding-h;
+    font-weight: $btn-font-weight;
+    line-height: $btn-line-height;
+    font-size: $btn-font-size;
+    color: $color-black;
+    background-color: transparent;
+    border: $btn-border-width solid $color-accent;
+    border-radius: $btn-border-radius;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    @include transition();
+
+    &:focus,
+    &:hover {
+        color: #000;
+        text-decoration: none;
+    }
+
+    &:hover {
+        background-color: lighten($color-accent, 5%)
+    }
+
+    &:active {
+        background-color: darken($color-accent, 5%)
+    }
+}
