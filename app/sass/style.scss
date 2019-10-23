@@ -1,12 +1,10 @@
 @charset "utf-8";
 
 /*
-
-Naming prefixes meaning:
-~ cmn - common section/block (used everywhere)
-~ hp - homepage section/block
-~ pg - internal page, content page section/block
-
+Naming prefixes:
+~ cmn - common section/block
+~ hp - homepage
+~ pg - internal page
 */
 
 
@@ -15,6 +13,7 @@ Naming prefixes meaning:
 @import "service/variables";
 @import "service/mixins";
 @import "service/icons";
+
 @import "sprite/sprite";
 
 
@@ -47,6 +46,7 @@ Naming prefixes meaning:
 @import "components/form";
 @import "components/buttons";
 @import "components/popups";
+@import "components/lists";
 
 
 /* Blocks */
