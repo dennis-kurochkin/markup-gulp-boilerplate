@@ -36,9 +36,7 @@ gulp.task('sass', function () {
         .pipe(plumber())
         .pipe(sourceMaps.init())
         .pipe(sass().on("error", notify.onError()))
-        .pipe(autoprefixer({
-            browsers: ['ie >= 10', 'Firefox >= 30', 'Chrome >= 22', 'Safari >= 6.1', 'Opera >= 12.1']
-        }))
+        .pipe(autoprefixer())
         .pipe(sourceMaps.write())
         .pipe(gulp.dest('app/css'))
         .pipe(browserSync.reload({
@@ -99,7 +97,7 @@ gulp.task('img', function () {
                 optimizationLevel: 3
             }),
             pngquant({
-                quality: '65-70',
+                quality: [0.65, 0.70],
                 speed: 5
             })
         ]))
