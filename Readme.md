@@ -64,12 +64,12 @@ gulp sprite
 gulp svgSpriteBuild
 Все иконки лежат в папке icons-svg. Вставка иконки в html файле
 
-<svg class="icon-svg icon-name">
+<svg class="icon-svg">
     <use xlink:href="images/sprite.svg#name"></use>
 </svg>
 
 Для emmet:
-svg.icon-svg.icon-name>use[xlink:href="images/sprite.svg#name"]
+svg.icon-svg>use[xlink:href="images/sprite.svg#name"]
 
 (name - название иконки)
 Генерируется символьный спрайт, т.е. иконкой можно управлять через font-size и color

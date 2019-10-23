@@ -3,11 +3,13 @@
     @return $px / $font-size-base+0rem;
 }
 
+
 @mixin list-reset {
     margin: 0;
     padding: 0;
     list-style: none;
 }
+
 
 @mixin absolute-centering {
     position: absolute;
@@ -16,16 +18,32 @@
     transform: translate(-50%, -50%);
 }
 
+
+@mixin absolute-x-centering {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+@mixin absolute-y-centering {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
 @mixin flex-centering {
     align-items: center;
     justify-content: center;
 }
 
+
 @mixin margin-centering {
-    display: block;
     margin-left: auto;
     margin-right: auto;
 }
+
 
 @mixin links-all {
 
@@ -37,6 +55,14 @@
     }
 }
 
+
+@mixin outline {
+    outline: 2px solid rgba(0, 74, 221, 0.5);
+    outline-offset: 4px;
+}
+
+
+// @include button-defaults();
 @mixin button-defaults() {
     position: relative;
     display: inline-block;
@@ -52,8 +78,7 @@
 
     &:focus,
     &:active {
-        outline: 2px solid rgba(0, 74, 221, 0.5);
-        outline-offset: 4px;
+        @include outline();
     }
 
     &:hover {
@@ -61,6 +86,8 @@
     }
 }
 
+
+// @include box(100px);
 @mixin box($width, $height: $width) {
     width: $width;
     height: $height;
@@ -136,16 +163,59 @@
     }
 }
 
+
+// section paddings
+@mixin section-padding-lg {
+    padding: 100px 0;
+}
+
+@mixin section-padding-top-lg {
+    padding: 100px 0 0;
+}
+
+@mixin section-padding-bottom-lg {
+    padding: 0 0 100px;
+}
+
+@mixin section-padding-md {
+    padding: 70px 0;
+}
+
+@mixin section-padding-top-md {
+    padding: 70px 0 0;
+}
+
+@mixin section-padding-bottom-md {
+    padding: 0 0 70px;
+}
+
+@mixin section-padding-sm {
+    padding: 50px 0;
+}
+
+@mixin section-padding-top-sm {
+    padding: 50px 0 0;
+}
+
+@mixin section-padding-bottom-sm {
+    padding: 0 0 50px;
+}
+
+
 // transition
-@mixin transition($transition-property: all
-) {
-    transition: $transition-property $transition-time $transition-effect;
+@mixin transition($transition-property: all,
+    $transition-this-time: $transition-time,
+    $transition-this-effect: $transition-effect) {
+    transition: $transition-property $transition-this-time $transition-effect;
+}
+
+@mixin transition-no-outline() {
+    transition: background-color $transition-time, color $transition-time, border $transition-time, box-shadow $transition-time;
 }
 
 
 // Вставка иконок png из спрайта
 // @extend .icon-name;
-
 
 // svg
 @mixin svg-icon($icon-file-name, $icon-size-width, $icon-size-height) {

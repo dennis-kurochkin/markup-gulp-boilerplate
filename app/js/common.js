@@ -20,7 +20,7 @@ $(function () {
         midClick: true,
         removalDelay: 300,
         mainClass: 'my-mfp-slide-bottom',
-        closeMarkup: '<button title="%title%" type="button" class="mfp-close"></button>'
+        closeMarkup: '<button title="%title%" type="button" class="mfp-close cmn-popup__close-btn">×</button>'
     });
 
 

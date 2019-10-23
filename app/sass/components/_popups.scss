@@ -1,26 +1,42 @@
-.popup {
-    
-    // Basic styles
-    
+.cmn-popup {
     position: relative;
-    width: 875px;
-    min-height: 650px;
-    max-width: 95%;
-    margin: 40px auto;
-    padding: 50px 60px 60px;
-    background-color: #fdfdfd;
+    width: 475px;
+    margin: 0 auto;
+    padding: 30px 50px 35px;
+    border-radius: 5px;
+    background: $color-white;
 
+    &__title {
+        margin: 0 auto 15px;
+        text-align: center;
+    }
 
-    // Text elements
+    &__subtitle {
+        margin: 0 auto;
+        font-size: 18px;
+        text-align: center;
+    }
 
+    &__form {
+        margin: 25px auto 0;
+    }
 
-    // UI elements
+    &__success-img {
+        display: flex;
+        @include flex-centering();
+        margin: 0 0 15px;
+        color: $color-accent;
+        
+        svg {
+            @include box(100px);
+        }
+    }
 
-
-    // Sizes
-
-
-    // Types & Themes
-
-
+    &__close-btn {
+        @include button-defaults();
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        font-size: 42px;
+    }
 }
