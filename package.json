@@ -1,7 +1,7 @@
 {
   "name": "gulp-template",
   "version": "2.0.0",
-  "description": "Gulp Template for Projects",
+  "description": "Gulp Template for projects",
   "main": "index.js",
   "browserslist": [
     "last 2 version",
@@ -15,7 +15,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Dennis Kurochkin & A7",
+  "author": "A7",
   "license": "GNU",
   "devDependencies": {
     "browser-sync": "^2.26.5",

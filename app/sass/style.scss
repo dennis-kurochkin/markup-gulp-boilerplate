@@ -7,7 +7,6 @@ Naming prefixes:
 ~ pg - internal page
 */
 
-
 /* Service styles and things */
 
 @import "service/variables";
@@ -49,12 +48,8 @@ Naming prefixes:
 @import "components/lists";
 
 
-/* Blocks */
-
-@import "blocks/cmn-nav";
-
-
 /* Sections & Pages */
 
 @import "sections/cmn-header";
+@import "sections/hp-hero";
 @import "sections/cmn-footer";

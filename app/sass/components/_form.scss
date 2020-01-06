@@ -3,7 +3,6 @@ body {
 
     input,
     textarea {
-        outline: none;
         @include transition-no-outline();
 
         &:required:valid {
@@ -42,7 +41,7 @@ body {
     &__input,
     &__textarea {
         width: 100%;
-        
+
         &-input {
             display: block;
             width: 100%;

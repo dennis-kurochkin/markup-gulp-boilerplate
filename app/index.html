@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <title>New (cool) project</title>
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body data-sprite="images/sprite.svg">
 
     <!-- BEGIN layout -->
     <div class="layout">
@@ -24,12 +24,20 @@
 
             <!-- BEGIN header -->
             <header class="cmn-header">
-
+                <div class="container">
+                    
+                </div>
             </header>
             <!-- END header -->
 
             <!-- BEGIN main -->
             <main class="cmn-main">
+
+                <div class="hp-hero">
+                    <div class="container">
+
+                    </div>
+                </div>
 
             </main>
             <!-- END main -->
@@ -40,12 +48,21 @@
         <!-- BEGIN layout__bottom -->
         <div class="layout__bottom">
 
-
             <!-- BEGIN footer -->
             <footer class="cmn-footer">
+                <div class="container">
 
+                </div>
             </footer>
             <!-- END footer -->
+
+            <!-- START popups nav -->
+            <h2>Попапы:</h2>
+            <ul>
+                <li><a href="#popup-consult" class="js-open-popup-link">Обратный звонок</a></li>
+                <li><a href="#popup-success" class="js-open-popup-link">Успешная отправка формы</a></li>
+            </ul>
+            <!-- FINISH popups nav -->
 
         </div>
         <!-- END layout__bottom -->
@@ -53,14 +70,7 @@
     </div>
     <!-- END layout -->
 
-    <!-- STAST popups -->
-
-    <h2>Попапы:</h2>
-    <ul>
-        <li><a href="#popup-consult" class="js-open-popup-link">Обратный звонок</a></li>
-        <li><a href="#popup-success" class="js-open-popup-link">Успешная отправка формы</a></li>
-    </ul>
-
+    <!-- START popups -->
     <div class="hide">
 
         <div class="cmn-popup cmn-popup--consult" id="popup-consult">
@@ -100,7 +110,7 @@
                 </form>
             </div>
         </div>
-        
+
         <div class="cmn-popup cmn-popup--success" id="popup-success">
             <div class="cmn-popup__inner">
                 <div class="cmn-popup__success-img">

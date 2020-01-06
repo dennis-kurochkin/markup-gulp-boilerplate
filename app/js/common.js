@@ -4,8 +4,8 @@ $(function () {
      * svg4everybody
      */
 
+    var spriteURL = $('body').data('sprite');
     svg4everybody();
-
 
     /**
      * Magnific popups
@@ -20,7 +20,7 @@ $(function () {
         midClick: true,
         removalDelay: 300,
         mainClass: 'my-mfp-slide-bottom',
-        closeMarkup: '<button title="%title%" type="button" class="mfp-close cmn-popup__close-btn">×</button>'
+        closeMarkup: '<button title="Закрыть (ESC)" type="button" class="mfp-close cmn-popup__close-btn">×</button>'
     });
 
 
@@ -28,15 +28,15 @@ $(function () {
      * Slick slider
      */
 
-    $('.js-test-slider').slick({
+    $('.js-slider').slick({
         slidesToShow: 3,
         autoplay: true,
         autoplaySpeed: 3000,
         arrows: true,
         dots: false,
-        appendArrows: $('.js-otdelka-slider-nav'),
-        nextArrow: '<button type="button" class="slick-next"><svg class="icon-svg icon-13"><use xlink:href="images/sprite.svg#13"></use></svg></button>',
+        appendArrows: $('.js-slider-nav'),
         prevArrow: '<button type="button" class="slick-prev"><svg class="icon-svg icon-14"><use xlink:href="images/sprite.svg#14"></use></svg></button>',
+        nextArrow: '<button type="button" class="slick-next"><svg class="icon-svg icon-13"><use xlink:href="images/sprite.svg#13"></use></svg></button>',
         responsive: [{
                 breakpoint: 992,
                 settings: {
@@ -66,11 +66,43 @@ $(function () {
 
 
     /**
-     * Hamburger menu
+     * Mobile menu
      */
 
-    $('.js-hamburger').click(function () {
-        $('.mobileMenu').toggleClass('active');
+    $('.js-cmn-header-hamburger').click(function () {
+        $('body').addClass('overflow-hidden');
+        $('.js-overlay').addClass('overlay-active');
+        $('.js-layout').addClass('mobile-menu-active');
+        $('.js-cmn-mobile-menu').addClass('active');
+    });
+
+    $('.js-cmn-mobile-menu-close').click(function () {
+        $('body').removeClass('overflow-hidden');
+        $('.js-overlay').removeClass('overlay-active');
+        $('.js-layout').removeClass('mobile-menu-active');
+        $('.js-cmn-mobile-menu').removeClass('active');
+    });
+
+    $('.js-overlay').click(function (evt) {
+        if ($(evt.target).hasClass('js-overlay')) {
+            $('body').removeClass('overflow-hidden');
+            $('.js-overlay').removeClass('overlay-active');
+            $('.js-layout').removeClass('mobile-menu-active');
+            $('.js-cmn-mobile-menu').removeClass('active');
+        }
+    });
+
+
+    /**
+     * Smooth Scroll to Anchor
+     */
+
+    $(document).on('click', 'a.js-anchor-link', function (evt) {
+        evt.preventDefault();
+
+        $('html, body').animate({
+            scrollTop: $($.attr(this, 'href')).offset().top
+        }, 700);
     });
 
 

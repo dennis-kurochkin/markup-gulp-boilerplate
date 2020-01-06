@@ -15,8 +15,8 @@ const svgSprite = require('gulp-svg-sprite');
 const svgmin = require('gulp-svgmin');
 const cheerio = require('gulp-cheerio');
 const replace = require('gulp-replace');
-const ttf2woff = require('gulp-ttf2woff');
-const ttf2woff2 = require('gulp-ttf2woff2');
+// const ttf2woff = require('gulp-ttf2woff');
+// const ttf2woff2 = require('gulp-ttf2woff2');
 const browserSync = require('browser-sync');
 const notify = require('gulp-notify');
 
@@ -63,16 +63,20 @@ gulp.task('scripts', function () {
             //все js до основного common.js
             'app/js/common.js'
         ])
+        .pipe(plumber())
         .pipe(uglify())
         .pipe(concat('all.min.js'))
-        .pipe(gulp.dest('app/js'));
+        .pipe(gulp.dest('app/js'))
+        .pipe(browserSync.reload({
+            stream: true
+        }));
 });
 
 
 gulp.task('watch', ['browser-sync', 'styles', 'scripts'], function () {
     gulp.watch('app/sass/**/*.scss', ['sass']);
     gulp.watch('app/*.html', browserSync.reload);
-    gulp.watch('app/js/**/*.js', ['scripts'], browserSync.reload);
+    gulp.watch('app/js/common.js', ['scripts'], browserSync.reload);
 });
 
 
@@ -83,6 +87,7 @@ gulp.task('clean', function () {
 
 gulp.task('img', function () {
     return gulp.src('app/images/**/*.{png,jpg}')
+        .pipe(plumber())
         .pipe(imagemin([
             imagemin.jpegtran({
                 progressive: true
@@ -173,18 +178,18 @@ gulp.task('svgSpriteBuild', function () {
 
 
 // ttf2woff.
-gulp.task('ttf2woff', function () {
-    gulp.src(['app/fonts/*.ttf'])
-        .pipe(ttf2woff())
-        .pipe(gulp.dest('app/fonts'));
-});
+// gulp.task('ttf2woff', function () {
+//     gulp.src(['app/fonts/*.ttf'])
+//         .pipe(ttf2woff())
+//         .pipe(gulp.dest('app/fonts'));
+// });
 
 // ttf2woff2.
-gulp.task('ttf2woff2', function () {
-    gulp.src(['app/fonts/*.ttf'])
-        .pipe(ttf2woff2())
-        .pipe(gulp.dest('app/fonts'));
-});
+// gulp.task('ttf2woff2', function () {
+//     gulp.src(['app/fonts/*.ttf'])
+//         .pipe(ttf2woff2())
+//         .pipe(gulp.dest('app/fonts'));
+// });
 
 
 gulp.task('default', ['watch']);

@@ -2,6 +2,11 @@
 //@include fonts("NameFont", "NameFont-Bold", 700);
 //@include fonts("NameFont", "NameFont-BoldItalic", 700, italic);
 
+::selection {
+    color: $color-white;
+    background: $color-accent;
+}
+
 b,
 strong {
     font-weight: $font-weight-bold;
