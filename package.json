@@ -6,10 +6,10 @@
   "browserslist": [
     "last 2 version",
     "> 1%",
-    "ie >= 10", 
-    "Firefox >= 30", 
-    "Chrome >= 22", 
-    "Safari >= 6.1", 
+    "ie >= 10",
+    "Firefox >= 30",
+    "Chrome >= 22",
+    "Safari >= 6.1",
     "Opera >= 12.1"
   ],
   "scripts": {

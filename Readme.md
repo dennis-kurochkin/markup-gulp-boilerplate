@@ -55,6 +55,13 @@ http://t1m0n.name/air-datepicker/docs/index-ru.html
 npm i --save air-datepicker
 'node_modules/air-datepicker/dist/js/datepicker.min.js',
 
+Ion.RangeSlider - flexible and responsive range slider with skin support
+http://ionden.com/a/plugins/ion.rangeSlider/index.html
+npm i --save ion-rangeslider
+'node_modules/ion-rangeslider/dist/js/ion.rangeSlider.min.js',
+'node_modules/ion-rangeslider/dist/css/ion.rangeSlider.min.css',
+@import "ion-range";
+
 
 Сборка растрового спрайта:
 gulp sprite
@@ -79,3 +86,8 @@ svg.icon-svg>use[xlink:href="images/sprite.svg#name"]
 Сборка для продакшена:
 gulp build
 Заменить .html подключение сжатых стилей style.min.css
+
+
+
+To Do:
+* Add More Media Queries
