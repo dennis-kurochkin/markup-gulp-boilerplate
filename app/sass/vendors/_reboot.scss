@@ -39,13 +39,11 @@ section {
 
 body {
     position: relative;
-    margin: 0;
     width: 100%;
     min-width: 320px;
     height: 100%;
     min-height: 100vh;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-weight: 400;
+    margin: 0;
     text-align: left;
     text-rendering: optimizeSpeed;
     scroll-behavior: smooth;
@@ -354,11 +352,6 @@ template {
     display: none !important
 }
 
-ul[class],
-ol[class] {
-    padding: 0;
-}
-
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;
@@ -366,4 +359,13 @@ ol[class] {
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
+}
+
+.grecaptcha-badge {
+    position: absolute !important;
+    top: -99999px !important;
+    left: -99999px !important;
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
