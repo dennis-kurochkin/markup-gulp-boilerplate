@@ -63,7 +63,9 @@ gulp.task('scripts', function () {
             //все js до основного common.js
             'app/js/common.js'
         ])
-        .pipe(plumber())
+        .pipe(plumber({
+            errorHandler: notify.onError("Script Error: <%= error.message %>")
+        }))
         .pipe(uglify())
         .pipe(concat('all.min.js'))
         .pipe(gulp.dest('app/js'))
@@ -86,8 +88,10 @@ gulp.task('clean', function () {
 
 
 gulp.task('img', function () {
-    return gulp.src('app/images/**/*.{png,jpg}')
-        .pipe(plumber())
+    return gulp.src('app/images/**/*.{png,jpg,jpeg,mp4,webm}')
+        .pipe(plumber({
+            errorHandler: notify.onError("Script Error: <%= error.message %>")
+        }))
         .pipe(imagemin([
             imagemin.jpegtran({
                 progressive: true
