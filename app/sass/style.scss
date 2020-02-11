@@ -1,19 +1,12 @@
 @charset "utf-8";
 
-/*
-Naming prefixes:
-~ cmn - common section/block
-~ hp - homepage
-~ pg - internal page
-*/
-
 /* Service styles and things */
 
 @import "service/variables";
 @import "service/mixins";
 @import "service/icons";
-
 @import "sprite/sprite";
+@import "service/animations";
 
 
 /* External styles */
@@ -29,6 +22,7 @@ Naming prefixes:
 @import "utilities/common";
 @import "utilities/flex";
 @import "utilities/margins";
+@import "utilities/paddings";
 @import "utilities/text";
 @import "utilities/visibility";
 

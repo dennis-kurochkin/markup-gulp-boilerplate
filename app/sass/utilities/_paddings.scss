@@ -1,0 +1,60 @@
+.padding-xl {
+    @include section-padding-xl;
+}
+
+// .padding-top-xl {
+//     @include section-padding-top-xl;
+// }
+
+.padding-bottom-xl {
+    @include section-padding-bottom-xl;
+}
+
+.padding-lg {
+    @include section-padding-lg;
+}
+
+// .padding-top-lg {
+//     @include section-padding-top-lg;
+// }
+
+.padding-bottom-lg {
+    @include section-padding-bottom-lg;
+}
+
+.padding-md {
+    @include section-padding-md;
+}
+
+.padding-top-md {
+    @include section-padding-top-md;
+}
+
+.padding-bottom-md {
+    @include section-padding-bottom-md;
+}
+
+.padding-sm {
+    @include section-padding-sm;
+}
+
+.padding-top-sm {
+    @include section-padding-top-sm
+}
+
+.padding-bottom-sm {
+    @include section-padding-bottom-sm
+}
+
+
+.no-padding {
+    padding: 0;
+
+    &-top {
+        padding-top: 0;
+    }
+
+    &-bottom {
+        padding-bottom: 0;
+    }
+}
