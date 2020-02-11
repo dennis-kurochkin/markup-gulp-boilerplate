@@ -1,6 +1,5 @@
 .btn {
-    @include button-defaults();
-    padding: 15px 30px;
+    @include button-setup(15px 30px);
     color: $color-white;
     font-size: 18px;
     background: $color-accent;

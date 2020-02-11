@@ -1,42 +1,39 @@
-@function rem($px) {
-    @return $px / $font-size-base+0rem;
-}
+/*=============================================
+=                Positioning                 =
+=============================================*/
 
 
-@mixin list-reset {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-
-@mixin absolute-centering {
+@mixin absolute-sides($top, $bottom: $top, $left: $top, $right: $top) {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: $top;
+    bottom: $bottom;
+    left: $left;
+    right: $right;
+}
+
+@mixin absolute-centering($top: 50%, $left: 50%) {
+    position: absolute;
+    top: $top;
+    left: $left;
     transform: translate(-50%, -50%);
 }
 
-
-@mixin absolute-x-centering {
+@mixin absolute-x-centering($left: 50%) {
     position: absolute;
-    left: 50%;
+    left: $left;
     transform: translateX(-50%);
 }
 
-
-@mixin absolute-y-centering {
+@mixin absolute-y-centering($top: 50%) {
     position: absolute;
-    top: 50%;
+    top: $top;
     transform: translateY(-50%);
 }
-
 
 @mixin flex-centering {
     align-items: center;
     justify-content: center;
 }
-
 
 @mixin margin-centering {
     margin-left: auto;
@@ -44,7 +41,41 @@
 }
 
 
+/*=============================================
+=                  Sizing                   =
+=============================================*/
+
+
+@function rem($px) {
+    @return $px / $font-size-base+0rem;
+}
+
+@mixin box($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+
+
+/*=============================================
+=                   Text                    =
+=============================================*/
+
+
+@mixin text-gradient($color: transparent) {
+    -webkit-text-fill-color: $color;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+@mixin text-gradient-remove($color: $color-accent) {
+    -webkit-text-fill-color: $color;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+}
+
 @mixin links-all {
+
     &:link,
     &:visited,
     &:focus,
@@ -53,19 +84,35 @@
     }
 }
 
+@mixin fonts($alias, $name, $weight:normal, $style:normal) {
+    @font-face {
+        font-family: $alias;
+        src: url("../fonts/"+ $name + ".woff2") format("woff2"),
+            url("../fonts/"+ $name + ".woff") format("woff"),
+            url("../fonts/"+ $name + ".ttf") format("truetype"),
+            url("../fonts/"+ $name + ".eot") format("embedded-opentype");
+        font-weight: $weight;
+        font-style: $style;
+    }
+}
+
+
+/*=============================================
+=                Components                  =
+=============================================*/
+
 
 @mixin outline {
     outline: 2px solid rgba(0, 74, 221, 0.5);
     outline-offset: 4px;
 }
 
-
-@mixin button-defaults() {
-    position: relative;
+@mixin button-setup($padding: 0, $margin: 0, $position: relative, $text-align: center) {
+    position: $position;
     display: inline-block;
-    margin: 0;
-    padding: 0;
-    text-align: center;
+    margin: $margin;
+    padding: $padding;
+    text-align: $text-align;
     vertical-align: middle;
     background: none;
     border: 0;
@@ -86,29 +133,29 @@
     }
 }
 
+@mixin list-reset {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
 
-// @include box(100px);
-@mixin box($width, $height: $width) {
-    width: $width;
-    height: $height;
+@mixin img-cover {
+    @include box(100%);
+    object-fit: cover;
 }
 
 
-// @include font("NameFont", "path");
-@mixin fonts($alias, $name, $weight:normal, $style:normal) {
-    @font-face {
-        font-family: $alias;
-        src: url("../fonts/"+ $name + ".woff2") format("woff2"),
-            url("../fonts/"+ $name + ".woff") format("woff"),
-            url("../fonts/"+ $name + ".ttf") format("truetype"),
-            url("../fonts/"+ $name + ".eot") format("embedded-opentype");
-        font-weight: $weight;
-        font-style: $style;
+/*=============================================
+=                Media Queries               =
+=============================================*/
+
+
+@mixin media {
+    @media all {
+        @content;
     }
 }
 
-
-//.block { @include desktop { @content; } }
 @mixin desktop-wide {
     @media (max-width: 1400px) {
         @content;
@@ -176,7 +223,75 @@
 }
 
 
-// section paddings
+/*=============================================
+=              Sections paddings              =
+=============================================*/
+
+
+@mixin section-padding-xl {
+    padding: 130px 0;
+
+    @include desktop-wide {
+        padding: 70px 0;
+    }
+
+    @include desktop {
+        padding: 60px 0;
+    }
+
+    @include tablet-lg {
+        padding: 50px 0;
+    }
+
+    @include tablet-md {
+        padding: 45px 0;
+    }
+
+    @include tablet-sm {
+        padding: 40px 0;
+    }
+
+    @include phone-lg {
+        padding: 35px 0;
+    }
+
+    @include phone-sm {
+        padding: 30px 0;
+    }
+}
+
+@mixin section-padding-bottom-xl {
+    padding-bottom: 130px;
+
+    @include desktop-wide {
+        padding-bottom: 70px;
+    }
+
+    @include desktop {
+        padding-bottom: 60px;
+    }
+
+    @include tablet-lg {
+        padding-bottom: 50px;
+    }
+
+    @include tablet-md {
+        padding-bottom: 45px;
+    }
+
+    @include tablet-sm {
+        padding-bottom: 40px;
+    }
+
+    @include phone-lg {
+        padding-bottom: 35px;
+    }
+
+    @include phone-sm {
+        padding-bottom: 30px;
+    }
+}
+
 @mixin section-padding-lg {
     padding: 100px 0;
 
@@ -204,48 +319,218 @@
         padding: 40px 0;
     }
 
+    @include phone-md {
+        padding: 35px 0 40px;
+    }
+
     @include phone-sm {
-        padding: 30px 0;
+        padding: 30px 0 35px;
     }
 }
 
-@mixin section-padding-top-lg {
-    padding: 100px 0 0;
-}
-
 @mixin section-padding-bottom-lg {
-    padding: 0 0 100px;
+    padding-bottom: 100px;
+
+    @include desktop-wide {
+        padding-bottom: 80px;
+    }
+
+    @include desktop {
+        padding-bottom: 70px;
+    }
+
+    @include laptop {
+        padding-bottom: 60px;
+    }
+
+    @include tablet-lg {
+        padding-bottom: 50px;
+    }
+
+    @include tablet-md {
+        padding-bottom: 45px;
+    }
+
+    @include phone-lg {
+        padding-bottom: 40px;
+    }
+
+    @include phone-md {
+        padding-bottom: 40px;
+    }
+
+    @include phone-sm {
+        padding-bottom: 35px;
+    }
 }
 
 @mixin section-padding-md {
-    padding: 70px 0;
+    padding: 60px 0;
+
+    @include desktop-wide {
+        padding: 55px 0;
+    }
+
+    @include desktop {
+        padding: 50px 0;
+    }
+
+    @include laptop {
+        padding: 45px 0;
+    }
+
+    @include tablet-lg {
+        padding: 40px 0;
+    }
+
+    @include tablet-sm {
+        padding: 35px 0 40px;
+    }
+
+    @include phone-lg {
+        padding: 30px 0 35px;
+    }
 }
 
 @mixin section-padding-top-md {
-    padding: 70px 0 0;
+    padding-top: 60px;
+
+    @include desktop-wide {
+        padding-top: 55px;
+    }
+
+    @include desktop {
+        padding-top: 50px;
+    }
+
+    @include laptop {
+        padding-top: 45px;
+    }
+
+    @include tablet-lg {
+        padding-top: 40px;
+    }
+
+    @include tablet-sm {
+        padding-top: 35px;
+    }
+
+    @include phablet {
+        padding-top: 30px;
+    }
+
+    @include phone-sm {
+        padding-top: 25px;
+    }
 }
 
 @mixin section-padding-bottom-md {
-    padding: 0 0 70px;
+    padding-bottom: 60px;
+
+    @include desktop-wide {
+        padding-bottom: 55px;
+    }
+
+    @include desktop {
+        padding-bottom: 50px;
+    }
+
+    @include laptop {
+        padding-bottom: 45px;
+    }
+
+    @include tablet-lg {
+        padding-bottom: 40px;
+    }
+
+    @include tablet-sm {
+        padding-bottom: 35px;
+    }
+
+    @include phablet {
+        padding-bottom: 30px;
+    }
+
+    @include phone-sm {
+        padding-bottom: 25px;
+    }
 }
 
 @mixin section-padding-sm {
-    padding: 50px 0;
+    padding: 40px 0;
+
+    @include desktop-wide {
+        padding: 35px 0;
+    }
+
+    @include desktop {
+        padding: 32px 0;
+    }
+
+    @include laptop {
+        padding: 28px 0;
+    }
+
+    @include tablet-lg {
+        padding: 23px 0;
+    }
+
+    @include phone-md {
+        padding: 20px 0;
+    }
 }
 
 @mixin section-padding-top-sm {
-    padding: 50px 0 0;
+    padding-top: 40px;
+
+    @include desktop-wide {
+        padding-top: 35px;
+    }
+
+    @include desktop {
+        padding-top: 32px;
+    }
+
+    @include laptop {
+        padding-top: 28px;
+    }
+
+    @include tablet-lg {
+        padding-bottom: 23px;
+    }
 }
 
 @mixin section-padding-bottom-sm {
-    padding: 0 0 50px;
+    padding-bottom: 40px;
+
+    @include desktop-wide {
+        padding-bottom: 35px;
+    }
+
+    @include desktop {
+        padding-bottom: 32px;
+    }
+
+    @include laptop {
+        padding-bottom: 28px;
+    }
+
+    @include tablet-lg {
+        padding-bottom: 23px;
+    }
+
+    @include phone-md {
+        padding-bottom: 20px;
+    }
 }
 
 
-// transition
-@mixin transition($transition-property: all,
-    $transition-this-time: $transition-time,
-    $transition-this-effect: $transition-effect) {
+/*=============================================
+=                 Animations                  =
+=============================================*/
+
+
+@mixin transition($transition-property: all, $transition-this-time: $transition-time, $transition-this-effect: $transition-effect) {
     transition: $transition-property $transition-this-time $transition-effect;
 }
 
@@ -254,10 +539,11 @@
 }
 
 
-// Вставка иконок png из спрайта
-// @extend .icon-name;
+/*=============================================
+=                   Icons                     =
+=============================================*/
 
-// svg
+
 @mixin svg-icon($icon-file-name, $icon-size-width, $icon-size-height) {
     width: $icon-size-width;
     height: $icon-size-height;

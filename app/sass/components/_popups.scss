@@ -26,15 +26,14 @@
         @include flex-centering();
         margin: 0 0 15px;
         color: $color-accent;
-        
+
         svg {
             @include box(100px);
         }
     }
 
     &__close-btn {
-        @include button-defaults();
-        position: absolute;
+        @include button-setup(0, 0, absolute);
         top: 5px;
         right: 5px;
         font-size: 42px;
