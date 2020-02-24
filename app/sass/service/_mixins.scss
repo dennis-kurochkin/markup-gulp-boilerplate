@@ -107,7 +107,7 @@
     outline-offset: 4px;
 }
 
-@mixin button-setup($padding: 0, $margin: 0, $position: relative, $text-align: center) {
+@mixin button-setup($padding: 0, $margin: 0, $text-align: center, $position: relative) {
     position: $position;
     display: inline-block;
     margin: $margin;
