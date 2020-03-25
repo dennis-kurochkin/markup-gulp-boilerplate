@@ -6,6 +6,10 @@
 @import "service/mixins";
 @import "service/icons";
 @import "service/animations";
+
+
+/* Sprite */
+
 @import "sprite/sprite";
 
 
@@ -33,17 +37,19 @@
 @import "base/base";
 
 
-/* Components */
+/* Modules & Components */
 
-@import "components/containers";
-@import "components/form";
-@import "components/buttons";
-@import "components/popups";
-@import "components/lists";
+@import "modules/containers";
+@import "modules/form";
+@import "modules/buttons";
+@import "modules/popups";
+@import "modules/lists";
 
 
 /* Sections & Pages */
 
-@import "sections/cmn-header";
-@import "sections/hp-hero";
-@import "sections/cmn-footer";
+@import "layout/header";
+@import "layout/footer";
+
+
+/* Overrides */
