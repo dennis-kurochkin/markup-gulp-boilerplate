@@ -1,6 +1,7 @@
 # Front-end Checklist
 
 ## HTML
+- Theme color
 - W3C compliant
 - Pages & Elements
     - 404
