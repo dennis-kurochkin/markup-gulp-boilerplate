@@ -8,7 +8,7 @@
     - 5xx
     - Form validation errors
     - Success message
-    - Failure Message
+    - Failure message
 - Semantics
 - Adblocker test
 - Noopener (target="_blank" && rel="noopener")
