@@ -15,13 +15,11 @@ const svgSprite = require('gulp-svg-sprite');
 const svgmin = require('gulp-svgmin');
 const cheerio = require('gulp-cheerio');
 const replace = require('gulp-replace');
-// const ttf2woff = require('gulp-ttf2woff');
-// const ttf2woff2 = require('gulp-ttf2woff2');
 const browserSync = require('browser-sync');
 const notify = require('gulp-notify');
 
 
-gulp.task('browser-sync', function () {
+gulp.task('browser-sync', function() {
     browserSync({
         server: {
             baseDir: 'app'
@@ -31,7 +29,7 @@ gulp.task('browser-sync', function () {
 });
 
 
-gulp.task('sass', function () {
+gulp.task('sass', function() {
     return gulp.src('app/sass/**/*.scss')
         .pipe(plumber())
         .pipe(sourceMaps.init())
@@ -45,7 +43,7 @@ gulp.task('sass', function () {
 });
 
 
-gulp.task('styles', function () {
+gulp.task('styles', function() {
     return gulp.src('app/css/style.css')
         .pipe(cssnano())
         .pipe(concat('style.min.css'))
@@ -53,7 +51,7 @@ gulp.task('styles', function () {
 });
 
 
-gulp.task('scripts', function () {
+gulp.task('scripts', function() {
     return gulp.src([
             'node_modules/jquery/dist/jquery.js',
             'node_modules/jquery-migrate/dist/jquery-migrate.min.js',
@@ -75,19 +73,19 @@ gulp.task('scripts', function () {
 });
 
 
-gulp.task('watch', ['browser-sync', 'styles', 'scripts'], function () {
+gulp.task('watch', ['browser-sync', 'styles', 'scripts'], function() {
     gulp.watch('app/sass/**/*.scss', ['sass']);
     gulp.watch('app/*.html', browserSync.reload);
     gulp.watch('app/js/common.js', ['scripts'], browserSync.reload);
 });
 
 
-gulp.task('clean', function () {
+gulp.task('clean', function() {
     return del.sync('static');
 });
 
 
-gulp.task('img', function () {
+gulp.task('img', function() {
     return gulp.src('app/images/**/*.{png,jpg,jpeg,mp4,webm}')
         .pipe(plumber({
             errorHandler: notify.onError("Script Error: <%= error.message %>")
@@ -114,7 +112,7 @@ gulp.task('img', function () {
 });
 
 
-gulp.task('build', ['clean', 'img', 'styles', 'scripts'], function () {
+gulp.task('build', ['clean', 'img', 'styles', 'scripts'], function() {
 
     var buildCss = gulp.src('app/css/style.min.css')
         .pipe(gulp.dest('static/css'));
@@ -129,6 +127,7 @@ gulp.task('build', ['clean', 'img', 'styles', 'scripts'], function () {
         .pipe(gulp.dest('static/js'));
 
     var buildHtml = gulp.src('app/*.html')
+        .pipe(replace('style.css', 'style.min.css'))
         .pipe(gulp.dest('static'));
 
     var buildPhp = gulp.src('app/*.php')
@@ -138,7 +137,7 @@ gulp.task('build', ['clean', 'img', 'styles', 'scripts'], function () {
 
 
 // sprite png
-gulp.task('sprite', function () {
+gulp.task('sprite', function() {
     var spriteData = gulp.src('app/images/icons/*.png').pipe(spritesmith({
         imgName: 'sprite.png',
         cssName: '_sprite.scss',
@@ -152,7 +151,7 @@ gulp.task('sprite', function () {
 
 
 // sprite svg
-gulp.task('svgSpriteBuild', function () {
+gulp.task('svgSpriteBuild', function() {
     return gulp.src('app/images/icons-svg/*.svg')
         .pipe(svgmin({
             js2svg: {
@@ -160,7 +159,7 @@ gulp.task('svgSpriteBuild', function () {
             }
         }))
         .pipe(cheerio({
-            run: function ($) {
+            run: function($) {
                 $('[fill]').removeAttr('fill');
                 $('[stroke]').removeAttr('stroke');
                 $('[style]').removeAttr('style');
@@ -179,21 +178,6 @@ gulp.task('svgSpriteBuild', function () {
         }))
         .pipe(gulp.dest('app/images/'));
 });
-
-
-// ttf2woff.
-// gulp.task('ttf2woff', function () {
-//     gulp.src(['app/fonts/*.ttf'])
-//         .pipe(ttf2woff())
-//         .pipe(gulp.dest('app/fonts'));
-// });
-
-// ttf2woff2.
-// gulp.task('ttf2woff2', function () {
-//     gulp.src(['app/fonts/*.ttf'])
-//         .pipe(ttf2woff2())
-//         .pipe(gulp.dest('app/fonts'));
-// });
 
 
 gulp.task('default', ['watch']);

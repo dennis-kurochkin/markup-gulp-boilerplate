@@ -37,5 +37,17 @@
 ~ Screen reader check
 
 ## Perfomance
-- Page weight is less than 500 KB
-- Google Page Speed >= 90
+- Checking Services
+    - PageSpeed Insights >= 90
+    - Lighthouse
+    - Test a website's performance - https://www.webpagetest.org/
+    - What Does My Site Cost? - https://whatdoesmysitecost.com/
+- Rules of thumb
+    - Page weight is less than 500 KB
+    - Reduce number of requests
+    - Minify & concatenate things
+    - Lazy load
++ Fonts
+    + Use "font-display: swap;"
+    + Use .woff/.woff2
+    ~ Reduce number of font files

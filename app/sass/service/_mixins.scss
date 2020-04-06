@@ -98,6 +98,7 @@
             url("../fonts/"+ $name + ".eot") format("embedded-opentype");
         font-weight: $weight;
         font-style: $style;
+        font-display: swap;
     }
 }
 
