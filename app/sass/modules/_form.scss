@@ -1,9 +1,7 @@
-/* form */
 body {
-
     input,
     textarea {
-        @include transition-no-outline();
+        @include transition-no-outline;
 
         &:required:valid {
             border-color: $color-accent;
@@ -14,7 +12,7 @@ body {
         }
 
         &:focus {
-            @include outline();
+            @include outline;
         }
     }
 }
@@ -28,37 +26,137 @@ body {
 
     &__row {
         &+.form__row {
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
-        .form__btn,
         .form__input,
-        .form__textarea {
+        .form__select,
+        .form__btn {
             width: 100%;
+        }
+
+        &--invalid {
+            .form__input {
+                border-color: $color-red;
+            }
+
+            .form__invalid-msg {
+                display: block;
+            }
+        }
+    }
+
+    &__label {
+        display: block;
+        font-size: 18px;
+        margin: 0 0 8px;
+
+        abbr {
+            color: $color-red;
+            font-family: serif;
+            font-weight: bold;
         }
     }
 
     &__input,
     &__textarea {
-        width: 100%;
+        padding: 15px 20px;
+        font-size: 20px;
+        color: $color-text;
+        border: 1px solid $color-border;
+        border-radius: 10px;
 
-        &-input {
-            display: block;
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid $color-gray;
+        &:focus {
+            outline: 0;
+            border-color: $color-accent;
         }
     }
 
-    &__agree {
-        &-label {
-            display: flex;
+    &__textarea {
+        width: 100%;
+        resize: vertical;
+    }
+
+    &__select {
+        padding: 14px 45px 14px 15px;
+        font-size: 18px;
+        line-height: 1;
+        border-radius: 5px;
+        border: 3px solid $color-border;
+        // background: $color-white url(../images/icons/1.png) calc(100% - 20px) 20px no-repeat;
+        // background-size: 15px 9px;
+        appearance: none;
+
+        &:focus {
+            @include outline;
         }
 
-        &-icon {
-            flex-shrink: 0;
-            width: 30px;
-            margin-right: 15px;
+        /* Hide arrow icon in IE browsers */
+        &::-ms-expand {
+            display: none;
+        }
+
+        /* Set options to normal weight */
+        option {
+            font-weight: normal;
+        }
+    }
+
+    &__invalid-msg {
+        display: none;
+        margin: 7px 0 -5px;
+        color: $color-red;
+    }
+
+    &__notice {
+        margin: 10px 0 0;
+        color: $color-gray;
+    }
+
+    &__agree {
+        position: relative;
+        margin: 10px 0 0;
+        user-select: none;
+
+        &-label {
+            margin: 0;
+            padding-left: 30px;
+            line-height: 1;
+
+            @include media {
+                @include phablet {
+                    font-size: 14px;
+                }
+
+                @include phone-lg {
+                    font-size: 12px;
+                }
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 2px;
+                left: 1px;
+                @include box(20px);
+                border-radius: 5px;
+                border: 1px solid $color-accent;
+                cursor: pointer;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 6px;
+                left: 5px;
+                @include svg-icon('12.svg', 12px, 12px);
+                opacity: 0;
+                cursor: pointer;
+            }
+        }
+
+        &-checkbox:checked+.form__agree-label::after {
+            opacity: 1;
         }
     }
 }

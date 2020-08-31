@@ -1,20 +1,9 @@
-body {
+html {
     font: $font-size-base $font-family;
+}
+
+body {
     line-height: $line-height-base;
     color: $color-black;
     background-color: $color-white;
-}
-
-.layout {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-
-    &__top {
-        flex: 1 0 auto;
-    }
-
-    &__bottom {
-        flex: 0 0 auto;
-    }
 }

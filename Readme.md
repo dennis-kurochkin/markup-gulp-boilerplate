@@ -38,29 +38,6 @@ gulp
 
 
 Файлы js сторонних библиотек подключаются в gulpfile.js до подключение основных файлов. Стили в vendors/_libs.scss
-Основные компоненты, которые приходится устанавливать:
-
-Tabby js - js tabs
-https://github.com/cferdinandi/tabby
-npm install tabbyjs
-'node_modules/tabbyjs/dist/js/tabby.min.js',
-
-imaskjs - input mask
-https://github.com/uNmAnNeR/imaskjs
-npm install imask
-'node_modules/node_modules/imask/dist/imask.min.js',
-
-AIR DATEPICKER - js datepicker
-http://t1m0n.name/air-datepicker/docs/index-ru.html
-npm i --save air-datepicker
-'node_modules/air-datepicker/dist/js/datepicker.min.js',
-
-Ion.RangeSlider - flexible and responsive range slider with skin support
-http://ionden.com/a/plugins/ion.rangeSlider/index.html
-npm i --save ion-rangeslider
-'node_modules/ion-rangeslider/dist/js/ion.rangeSlider.min.js',
-'node_modules/ion-rangeslider/dist/css/ion.rangeSlider.min.css',
-@import "ion-range";
 
 
 Сборка растрового спрайта:
@@ -71,7 +48,7 @@ gulp sprite
 gulp svgSpriteBuild
 Все иконки лежат в папке icons-svg. Вставка иконки в html файле
 
-<svg class="icon-svg">
+<svg class="icon-svg" aria-hidden="true">
     <use xlink:href="images/sprite.svg#name"></use>
 </svg>
 

@@ -3,9 +3,21 @@
 }
 
 .hide {
-  display: none;
+  display: none !important;
+  visibility: hidden;
 }
 
 .show {
-  display: block;
+  display: block !important;
+  visibility: visible;
+}
+
+.show-flex {
+  display: flex !important;
+  visibility: visible;
+}
+
+.show-grid {
+  display: grid !important;
+  visibility: visible;
 }
