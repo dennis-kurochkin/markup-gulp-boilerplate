@@ -10,3 +10,13 @@
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
+
+.slider {
+    min-width: 100%;
+    width: 0;
+}
+
+.slider-wrapper {
+    min-height: 0;
+    min-width: 0;
+}
