@@ -361,6 +361,7 @@ template {
     }
 }
 
+// Hide captcha
 .grecaptcha-badge {
     position: absolute !important;
     top: -99999px !important;
@@ -368,4 +369,9 @@ template {
     display: none !important;
     opacity: 0 !important;
     pointer-events: none !important;
+}
+
+// Vue fix
+[v-cloak] {
+    display: none;
 }

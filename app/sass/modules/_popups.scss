@@ -1,6 +1,7 @@
-.cmn-popup {
+.popup {
     position: relative;
     width: 475px;
+    max-width: calc(100% - 20px);
     margin: 0 auto;
     padding: 30px 50px 35px;
     border-radius: 5px;
