@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
 
     /**
      * SVG4everybody set up
@@ -7,7 +7,7 @@ $(function() {
     var spriteURL = $('body').data('sprite');
     svg4everybody();
 
-
+    
     /**
      * Magnific popups
      **/
@@ -23,7 +23,7 @@ $(function() {
         mainClass: 'my-mfp-slide-bottom',
         closeMarkup: '<button title="Закрыть (ESC)" type="button" class="mfp-close popup__close-btn">×</button>',
         callbacks: {
-            beforeOpen: function() {
+            beforeOpen: function () {
                 this.st.mainClass = 'mfp-zoom-out';
             }
         }
@@ -43,17 +43,17 @@ $(function() {
         prevArrow: '<button type="button" class="btn-slick slick-prev"><svg class="icon-svg icon-14"><use xlink:href="' + spriteURL + '#14"></use></svg></button>',
         nextArrow: '<button type="button" class="btn-slick slick-next"><svg class="icon-svg icon-13"><use xlink:href="' + spriteURL + '#13"></use></svg></button>',
         responsive: [{
-                breakpoint: 992,
-                settings: {
-                    slidesToShow: 2
-                }
-            },
-            {
-                breakpoint: 575,
-                settings: {
-                    slidesToShow: 1
-                }
+            breakpoint: 992,
+            settings: {
+                slidesToShow: 2
             }
+        },
+        {
+            breakpoint: 575,
+            settings: {
+                slidesToShow: 1
+            }
+        }
         ]
     });
 
@@ -62,7 +62,7 @@ $(function() {
      * To-top Button
      */
 
-    $('.js-to-top-btn').on('click', function(e) {
+    $('.js-to-top-btn').on('click', function (e) {
         e.preventDefault();
         $('html, body').animate({
             scrollTop: 0
@@ -74,7 +74,7 @@ $(function() {
      * Smooth Scroll to Anchor
      */
 
-    $(document).on('click', 'a.js-anchor-link', function(e) {
+    $(document).on('click', 'a.js-anchor-link', function (e) {
         e.preventDefault();
 
         $('html, body').animate({

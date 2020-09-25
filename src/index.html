@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+
+    <title>Название проекта - Страница</title>
+
+    <meta name="theme-color" content="#303030">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#303030">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-sprite="images/sprite.svg">
+
+    <!-- BEGIN grid -->
+    <div class="grid">
+
+        <!-- BEGIN header -->
+        <header class="header">
+            <div class="container">
+                <div class="header__logo"><img src="" alt=""></div>
+                <nav class="nav header__nav"></nav>
+            </div>
+        </header>
+        <!-- END header -->
+
+        <!-- BEGIN main -->
+        <main class="main">
+            <h1>sdkflsdjkfss</h1>
+        </main>
+        <!-- END main -->
+
+        <!-- BEGIN footer -->
+        <footer class="footer">
+            <div class="container">
+                <ul class="footer__menu"></ul>
+                <div class="footer__contacts"></div>
+            </div>
+        </footer>
+        <!-- END footer -->
+
+    </div>
+    <!-- END grid -->
+
+    <!-- BEGIN popups -->
+    <div class="hide">
+
+        <!-- BEGIN callback popup -->
+        <div class="popup" id="popup-callback">
+            <h3 class="popup__title">Обратный звонок</h3>
+            <p class="popup__subtitle">
+                Заполните форму<br>
+                и закажите обратный звонок
+            </p>
+            <form class="form popup__form">
+                <div class="form__row">
+                    <input type="text" class="form__input" placeholder="Имя">
+                </div>
+                <div class="form__row">
+                    <input type="tel" class="form__input" placeholder="Телефон">
+                </div>
+                <div class="form__row">
+                    <button type="submit" class="btn form__btn">Заказать звонок</button>
+                </div>
+                <div class="form__agree">
+                    <input type="checkbox" class="form__agree-checkbox hide" id="form-agree-1" checked hidden>
+                    <label for="form-agree-1" class="form__agree-label">
+                        Нажимая на кнопку "Заказать звонок", я соглашаюсь с <a href="#">политикой конфиденциальности</a>
+                    </label>
+                </div>
+            </form>
+        </div>
+        <!-- END callback popup -->
+
+        <!-- BEGIN success popup -->
+        <div class="popup" id="popup-success">
+            <div class="popup__success-img">
+                <svg class="icon-svg">
+                    <use xlink:href="images/sprite.svg#1"></use>
+                </svg>
+            </div>
+            <h3 class="popup__title">Заявка отправлена!</h3>
+            <p class="popup__subtitle">
+                Наши менеджеры скоро вам перезвонят
+            </p>
+        </div>
+        <!-- END success popup -->
+
+    </div>
+    <!-- END popups -->
+
+    <script src="js/bundle.js"></script>
+
+</body>
+
+</html>
