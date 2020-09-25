@@ -1,7 +1,5 @@
 $(function () {
 
-    alert('dfdf');
-
     /**
      * SVG4everybody set up
      */
@@ -9,6 +7,7 @@ $(function () {
     var spriteURL = $('body').data('sprite');
     svg4everybody();
 
+    
     /**
      * Magnific popups
      **/

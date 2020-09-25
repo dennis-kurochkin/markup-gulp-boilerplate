@@ -30,9 +30,6 @@
     "gulp-svgmin": "^3.0.0",
     "gulp-uglify": "^3.0.2",
     "gulp-uglify-es": "^2.0.0",
-    "gulp.spritesmith": "^6.10.0",
-    "imagemin-jpeg-recompress": "^7.0.0",
-    "imagemin-pngquant": "^9.0.1",
     "postcss": "^8.0.9"
   },
   "dependencies": {
