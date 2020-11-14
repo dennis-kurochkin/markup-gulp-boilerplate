@@ -1,0 +1,47 @@
+include ../mixins/mixins.pug
+
+- var themeColor = data.themeColor
+- var projectTitle = data.projectTitle
+
+block vars
+
+doctype html
+
+html(lang="en")
+
+  head
+
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale=5')
+
+    title #{projectTitle} - #{title}
+
+    meta(name='theme-color' content=themeColor)
+    meta(name='apple-mobile-web-app-status-bar-style' content=themeColor)
+
+    link(rel='stylesheet' href='css/main.css')
+
+  body
+
+    // BEGIN grid
+    .grid
+
+      // BEGIN header
+      include ../partials/header
+      // END header
+
+      // BEGIN main
+      main.main
+        block content
+      // END main
+
+      include ../partials/footer    
+    // END grid
+
+    .hide
+      // BEGIN popups
+      include ../partials/popups
+      // END popups
+
+    script(src='js/main.min.js')

@@ -1,4 +1,4 @@
-/*!
+/*
  * Bootstrap Reboot v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
  * Copyright 2011-2019 Twitter, Inc.
@@ -257,7 +257,7 @@ select {
 [type=reset],
 [type=submit],
 button {
-    -webkit-appearance: button
+    appearance: button;
 }
 
 [type=button]:not(:disabled),
@@ -348,7 +348,8 @@ template {
     display: none
 }
 
-[hidden] {
+[hidden],
+.sr-only {
     display: none !important
 }
 

@@ -1,16 +1,12 @@
 @charset "utf-8";
 
+
 /* Service styles and things */
 
 @import "service/variables";
 @import "service/mixins";
 @import "service/icons";
 @import "service/animations";
-
-
-/* PNG icons sprite */
-
-@import "sprite/sprite";
 
 
 /* External styles */
@@ -38,13 +34,13 @@
 @import "base/grid";
 
 
-/* Modules & Components */
+/* Components */
 
-@import "modules/containers";
-@import "modules/form";
-@import "modules/buttons";
-@import "modules/popups";
-@import "modules/lists";
+@import "components/container";
+@import "components/form/form";
+@import "components/buttons/button";
+@import "components/popup";
+@import "components/list";
 
 
 /* Sections & Pages */

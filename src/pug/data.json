@@ -1,0 +1,12 @@
+{
+    "data": {
+        "projectTitle": "Project",
+        "themeColor": "#303030",
+        "contacts": {
+            "phone": {
+                "href": "tel:88007757562",
+                "title": "8 (800) 775-75-62"
+            }
+        }
+    }
+}

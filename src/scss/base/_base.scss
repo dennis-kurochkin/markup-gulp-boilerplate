@@ -1,5 +1,12 @@
 html {
-    font: $font-size-base $font-family;
+    font-size: 100%;
+    font-family: $font-family;
+
+    @include media {
+        @include desktop {
+            font-size: 87.5%;
+        }
+    }
 }
 
 body {

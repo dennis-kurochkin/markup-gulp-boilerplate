@@ -1,0 +1,3 @@
+mixin svg(id, width='25', height='25')
+  svg.icon-svg(width=width, height=height, aria-hidden="true")&attributes(attributes)
+    use(xlink:href=`images/sprite.svg#${id}`)

@@ -1,10 +1,11 @@
-$(function () {
+window.addEventListener('DOMContentLoaded', () => {
 
     /**
      * SVG4everybody set up
      */
 
-    var spriteURL = $('body').data('sprite');
+    const spriteURL = $('body').data('sprite');
+    
     svg4everybody();
 
     
@@ -27,34 +28,6 @@ $(function () {
                 this.st.mainClass = 'mfp-zoom-out';
             }
         }
-    });
-
-
-    /**
-     * Slick slider
-     */
-
-    $('.js-slider').slick({
-        slidesToShow: 3,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        arrows: true,
-        dots: false,
-        prevArrow: '<button type="button" class="btn-slick slick-prev"><svg class="icon-svg icon-14"><use xlink:href="' + spriteURL + '#14"></use></svg></button>',
-        nextArrow: '<button type="button" class="btn-slick slick-next"><svg class="icon-svg icon-13"><use xlink:href="' + spriteURL + '#13"></use></svg></button>',
-        responsive: [{
-            breakpoint: 992,
-            settings: {
-                slidesToShow: 2
-            }
-        },
-        {
-            breakpoint: 575,
-            settings: {
-                slidesToShow: 1
-            }
-        }
-        ]
     });
 
 

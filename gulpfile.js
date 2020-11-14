@@ -1,98 +1,147 @@
+const { src, dest, parallel, series, watch } = require('gulp');
 const autoprefixer = require('autoprefixer');
+const babel = require('gulp-babel');
 const browserSync = require('browser-sync').create();
 const cssnano = require('cssnano');
 const concat = require('gulp-concat');
 const cheerio = require('gulp-cheerio');
 const del = require('del');
-const gulp = require('gulp');
+const data = require('gulp-data');
 const imagemin = require('gulp-imagemin');
 const plumber = require('gulp-plumber');
 const postcss = require('gulp-postcss');
+const pug = require('gulp-pug');
 const sass = require('gulp-sass');
 const svgSprite = require('gulp-svg-sprite');
 const svgmin = require('gulp-svgmin');
 const sourceMaps = require('gulp-sourcemaps');
 const replace = require('gulp-replace');
+const rename = require('gulp-rename');
 const notify = require('gulp-notify');
 const uglify = require('gulp-uglify-es').default;
 
+/** Base working directory */
+const baseDir = './src';
+
+/**
+ * Config
+ */
+const config = {
+
+    /** Files to watch and hard reload */
+    filesToWatch: 'html,htm,json,md',
+
+    /** Images to watch and process */
+    imagesToWatch: 'jpg,jpeg,png,webp,svg',
+
+    /** BrowserSync setting; if "false", BrowserSync will work offline */
+    browserSyncMode: 'true',
+
+    /** Path to files and directories */
+    paths: {
+        scripts: {
+            src: [
+                // dependencies
+                './node_modules/jquery/dist/jquery.js',
+                './node_modules/svg4everybody/dist/svg4everybody.js',
+                './node_modules/magnific-popup/dist/jquery.magnific-popup.js',
+                './node_modules/swiper/swiper-bundle.min.js',
+                // "app.js" always at the end
+                './src/js/app.js'
+            ],
+            dest: `${baseDir}/js`,
+        },
+        styles: {
+            src: `${baseDir}/scss/main.scss`,
+            dest: `${baseDir}/css`,
+        },
+        images: {
+            src: `${baseDir}/images/src/**/*`,
+            dest: `${baseDir}/images/dest`,
+        },
+        deploy: {
+            hostname: 'username@yousite.com', // Deploy hostname
+            destination: 'your-app/public_html/', // Deploy destination
+            include: [/* '*.htaccess' */], // Included files to deploy
+            exclude: ['**/Thumbs.db', '**/*.DS_Store'], // Excluded files from deploy
+        },
+        buildFolder: './static',
+        cssOutputName: 'main.min.css',
+        jsOutputName: 'main.min.js',
+    }
+
+}
+
+/**
+ * Initializes BrowserSync
+ */
+function browserSyncInit() {
+    browserSync.init({
+        server: {
+            baseDir: `${baseDir}/`
+        },
+        notify: false,
+        online: config.browserSyncMode
+    });
+}
+
 // Compile and optimize scripts
 function styles() {
-    return gulp
-        .src('./src/scss/**/*.scss') // find all scss files
+    return src(`${baseDir}/scss/**/*.scss`) // find all scss files
         .pipe(plumber()) // plumb errors
         .pipe(sourceMaps.init()) // init source maps
         .pipe(sass({ outputStyle: 'expanded' }).on("error", notify.onError())) // notify on sass error
-        .pipe(gulp.dest('./src/css')) // configure the destination
-        .pipe(postcss([autoprefixer(), cssnano()]))
+        .pipe(postcss([autoprefixer()]))
         .pipe(sourceMaps.write()) // write sourcemaps
-        .pipe(gulp.dest('./src/css')) // configure the destination
+        .pipe(dest(`${baseDir}/css`)) // configure the destination
         .pipe(browserSync.stream()); // stream changes to all browsers
+}
+
+function buildStyles() {
+    return src(`${baseDir}/css/main.css`)
+        .pipe(postcss([cssnano()]))
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(dest(`${config.paths.buildFolder}/css`))
 }
 
 // Compile and optimize scripts
 function scripts() {
-    return gulp.src([
-        './node_modules/jquery/dist/jquery.js',
-        './node_modules/jquery-migrate/dist/jquery-migrate.min.js',
-        './node_modules/svg4everybody/dist/svg4everybody.js',
-        './node_modules/magnific-popup/dist/jquery.magnific-popup.js',
-        './node_modules/slick-carousel/slick/slick.js',
-        //все js до основного common.js
-        './src/js/common.js'
-    ])
+    return src(config.paths.scripts.src)
         .pipe(plumber({
             errorHandler: notify.onError("Script Error: <%= error.message %>")
         }))
-        .pipe(uglify())
-        .pipe(concat('bundle.js'))
-        .pipe(gulp.dest('./src/js'));
-}
-
-// Optimize Images
-function images() {
-    return gulp
-        .src("./src/images/**/*")
-        .pipe(
-            imagemin([
-                imagemin.gifsicle({ interlaced: true }),
-                imagemin.mozjpeg({ progressive: true }),
-                imagemin.optipng({ optimizationLevel: 5 }),
-                imagemin.svgo({
-                    plugins: [
-                        {
-                            removeViewBox: false,
-                            collapseGroups: true
-                        }
-                    ]
-                })
-            ])
-        )
-        .pipe(gulp.dest("./dist/images"));
-}
-
-// Transpile, concatenate and minify scripts
-function scripts() {
-    return gulp
-        .src([
-            './node_modules/jquery/dist/jquery.js',
-            './node_modules/jquery-migrate/dist/jquery-migrate.min.js',
-            './node_modules/svg4everybody/dist/svg4everybody.js',
-            './node_modules/magnific-popup/dist/jquery.magnific-popup.js',
-            './node_modules/slick-carousel/slick/slick.js',
-            //все js до основного common.js
-            './src/js/common.js'
-        ])
-        .pipe(plumber())
-        .pipe(uglify())
-        .pipe(concat('bundle.js'))
-        .pipe(gulp.dest('./src/js'))
+        .pipe(concat(config.paths.jsOutputName))
+        .pipe(babel({
+            presets: [[
+                '@babel/env',
+                { modules: false }
+            ]]
+        }))
+        .pipe(dest(config.paths.scripts.dest))
         .pipe(browserSync.stream());
+}
+
+function buildScripts() {
+    return src(`${baseDir}/js/main.min.js`)
+        .pipe(uglify())
+        .pipe(dest(`${config.paths.buildFolder}/js`));
+}
+
+// Pug
+function buildPug() {
+    return src(`${baseDir}/pug/pages/**/*.pug`)
+        .pipe(data(function () {
+            return require(`${baseDir}/pug/data.json`);
+        }))
+        .pipe(pug({
+            pretty: true
+        }))
+        .pipe(dest(baseDir));
 }
 
 // SVG sprite
 function buildSVGSprite() {
-    return gulp.src('./src/images/icons-svg/*.svg')
+    return src(`${baseDir}/images/icons-svg/*.svg`)
         .pipe(svgmin({
             js2svg: {
                 pretty: true
@@ -116,53 +165,57 @@ function buildSVGSprite() {
                 }
             }
         }))
-        .pipe(gulp.dest('./src/images/'));
+        .pipe(dest(`${baseDir}/images/`));
 }
 
-// Clean dist directory
-function clean() {
-    return del(['./dist/']);
+// Optimize Images
+function processImages() {
+    return src(`${baseDir}/images/**/*`)
+        .pipe(imagemin([
+            imagemin.gifsicle({ interlaced: true }),
+            imagemin.mozjpeg({ quality: 75, progressive: true }),
+            imagemin.optipng({ optimizationLevel: 5 })
+        ]))
+        .pipe(dest(`${config.paths.buildFolder}/images`));
 }
 
 // Watch changes
-function watch() {
-    browserSync.init({ // initialize browserSync
-        server: {
-            baseDir: './src' // development source directory
-        },
-        notify: false // disable notifications
-    });
-
-    gulp.watch('./src/scss/**/*.scss', styles); // change styles files on .scss files change
-    gulp.watch("./src/js/common.js", scripts); // reload browser when .js changes
-    gulp.watch('./src/**/*.html').on('change', browserSync.reload); // reload browser when .html changes
-    gulp.watch("./src/images/**/*").on('change', browserSync.reload);
+function setupWatch() {
+    watch(`${baseDir}/pug/**/*.pug`, { usePolling: true }, buildPug);
+    watch(`${baseDir}/scss/**/*.scss`, { usePolling: true }, styles); // change styles files on .scss files change
+    watch([`${baseDir}/js/**/*.js`, `!${baseDir}/js/**/*.min.js`], { usePolling: true }, scripts); // reload browser when .js change
+    watch(`${baseDir}/**/*.{${config.filesToWatch}}`, { usePolling: true }).on('change', browserSync.reload); // reload browser when static files change
+    watch(`${baseDir}/images/icons-svg/*.svg`, { usePolling: true }, buildSVGSprite); // automatically build svg sprite
 }
 
-function build() {
-    gulp.src('./src/css/style.min.css')
-        .pipe(gulp.dest('./dist/css'));
+// Clean dist directory
+function clearDist() {
+    return del([`${config.paths.buildFolder}/`]);
+}
 
-    gulp.src('./src/images/**/*.+(svg|gif)')
-        .pipe(gulp.dest('./dist/images'));
-
-    gulp.src('./src/fonts/**/*')
-        .pipe(gulp.dest('./dist/fonts'));
-
-    gulp.src('./src/js/bundle.js')
-        .pipe(gulp.dest('./dist/js'));
-
-    return gulp.src('./src/*.html')
-        .pipe(replace('style.css', 'style.min.css'))
-        .pipe(gulp.dest('./dist'));
+// Move all static files to dist folder
+function moveStatic(done) {
+    src(`${baseDir}/fonts/**/*`).pipe(dest(`${config.paths.buildFolder}/fonts`));
+    src(`${baseDir}/*.html`).pipe(replace('main.css', 'main.min.css')).pipe(dest(config.paths.buildFolder));
+    done();
 }
 
 // Export tasks
 exports.styles = styles;
 exports.scripts = scripts;
-exports.clean = clean;
-exports.images = images;
 exports.buildSVGSprite = buildSVGSprite;
-exports.watch = watch;
-exports.build = build;
-exports.default = watch;
+exports.processImages = processImages;
+exports.clearDist = clearDist;
+exports.buildPug = buildPug;
+
+exports.build = series(
+    clearDist,
+    parallel(
+        series(buildSVGSprite, processImages),
+        series(styles, buildStyles),
+        series(scripts, buildScripts),
+    ),
+    moveStatic
+);
+
+exports.default = parallel(series(styles, scripts, browserSyncInit), setupWatch);
